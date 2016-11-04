@@ -7,17 +7,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-%>
+
 <html>
 <head>
     <title>Title</title>
-    <base href="<%=basePath%>">
-    <%--<script type="application/javascript" src="../../js/angular.min.js"/>--%>
-    <%--<script type="application/javascript" src="../../js/bootstrap.min.js"/>--%>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script type="application/javascript" src="../../js/jquery.min.js"></script>
+    <script type="application/javascript" src="../../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
 </head>
 <body>
     <div class="container">
@@ -29,39 +25,36 @@
                 <table class="table table-bordered table-striped table-hover">
                     <caption>
                         <div class="row">
-                            <div class="col-xs-2">
+                            <div class="col-xs-6">
                                 新闻管理
-                                &nbsp;<button class="btn btn-primary">添加</button>
-                            </div>
-                            <div class="col-xs-4">
-
+                                &nbsp;<button class="btn btn-default">添加</button>
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="关键字">
-
-
-
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">下拉菜单
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">类型
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="#">功能</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">另一个功能</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">其他</a>
+                                                <a href="#">全部</a>
                                             </li>
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="#">分离的链接</a>
+                                                <a href="#">编号</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">标题</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">内容</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">类型</a>
                                             </li>
                                         </ul>
-                                        <button class="btn btn-default" type="button">查询</button>
+                                         <button class="btn btn-default" type="button">查询</button>
                                     </span>
                                 </div>
                             </div>
@@ -83,7 +76,7 @@
                                 <th>${temp.n_name}</th>
                                 <th>${temp.n_content}</th>
                                 <th>${temp.n_type}</th>
-                                <th><button class="btn btn-info" id="${temp.n_id}">修改</button>&nbsp;<button class="btn btn-danger" id="${temp.n_id}">删除</button></th>
+                                <th><a class="btn btn-info" href="">修改</a>&nbsp;<a class="btn btn-danger" href="deleteById?n_id=1">删除</a></th>
                             </tr>
                         </c:forEach>
                     </tbody>
