@@ -30,7 +30,7 @@ public class Page {
         this.firstPage=currentPage == 1;
         this.frontPage=currentPage - 1;
         this.nextPage=currentPage + 1;
-        totalNumber=list.size();
+
         this.totalPage=totalNumber/pageNumber;
         if(totalNumber%pageNumber!=0){
             this.totalPage++;
