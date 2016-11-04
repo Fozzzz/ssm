@@ -32,4 +32,9 @@ public interface NewsDao {
 
     @Select("select * from news where n_id=#{n_id}")
     News getById(Integer n_id);
+
+    //模糊查询
+    @Select("select * from news where n_name like #{vague} limit #{currentNumber},#{pageNumber}")
+    List<News> getvague(Page page,String vague);
+
 }

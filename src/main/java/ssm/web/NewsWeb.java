@@ -46,4 +46,10 @@ public class NewsWeb {
         newsDao.update(news);
         return getLimit(page, model);
     }
+
+    @RequestMapping("/vague")
+    public String vague(String vague,Page page,Model model){
+        model.addAttribute("page",newsDao.getvague(page,vague));
+        return "index";
+    }
 }
