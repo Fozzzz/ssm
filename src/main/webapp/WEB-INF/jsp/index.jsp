@@ -79,15 +79,47 @@
                             <th>${temp.n_content}</th>
                             <th>${temp.n_type}</th>
                             <th>
-                                <button href="#update" class="btn btn-info" data-toggle="modal" v-on:click="update('${temp.n_id}','${temp.n_name}','${temp.n_content}','${temp.n_type}')">修改
+                                <button href="#update" class="btn btn-info" data-toggle="modal"
+                                        v-on:click="update('${temp.n_id}','${temp.n_name}','${temp.n_content}','${temp.n_type}')">
+                                    修改
                                 </button>
                                 &nbsp;<a
                                     class="btn btn-danger"
                                     href="deleteById?n_id=${temp.n_id}&currentPage=${page.currentPage}">删除</a></th>
                         </tr>
                     </c:forEach>
+
                     </tbody>
+
                 </table>
+                <div>
+                    <ul class="pagination">
+                        <%--上一页--%>
+                        <c:if test="${page.firstPage}">
+                            <li class="disabled"><a href="getLimit?currentPage=${page.frontPage}">&laquo;</a></li>
+                        </c:if>
+                        <c:if test="${!page.firstPage}">
+                            <li><a href="getLimit?currentPage=${page.frontPage}">&laquo;</a></li>
+                        </c:if>
+
+                        <c:forEach var="i" begin="1" end="${page.totalPage}">
+                            <c:if test="${page.currentPage==i}">
+                                <li class="active"><a href="#">${i}</a></li>
+                            </c:if>
+                            <c:if test="${page.currentPage!=i}">
+                                <li><a href="getLimit?currentPage=${i}">${i}</a></li>
+                            </c:if>
+                        </c:forEach>
+
+                        <%--下一页--%>
+                        <c:if test="${page.lastPage}">
+                            <li class="disabled"><a href="getLimit?currentPage=${page.nextPage}">&raquo;</a></li>
+                        </c:if>
+                        <c:if test="${!page.lastPage}">
+                            <li><a href="getLimit?currentPage=${page.nextPage}">&raquo;</a></li>
+                        </c:if>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -196,7 +228,7 @@
             n_type: ''
         },
         methods: {
-            update: function (id,name,content,type) {
+            update: function (id, name, content, type) {
                 this.n_id = id;
                 this.n_name = name;
                 this.n_content = content;

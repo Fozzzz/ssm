@@ -11,13 +11,13 @@ public class Page {
     private Integer currentPage=1;
     private Integer currentNumber;
     //单页显示的数量
-    private Integer pageNumber=5;
+    private Integer pageNumber=8;
     //总的页码
     private Integer totalPage;
     //总的数量
     private Integer totalNumber;
-    private boolean lastPage;
-    private boolean firstPage;
+    private Boolean lastPage;
+    private Boolean firstPage;
     //列表数据
     private List<?> list;
     private Integer nextPage;
@@ -74,10 +74,10 @@ public class Page {
     public Integer getFrontPage() {
         return frontPage;
     }
-    public Boolean isLastPage() {
+    public boolean isLastPage() {
         return lastPage;
     }
-    public Boolean isFirstPage() {
+    public boolean isFirstPage() {
         return firstPage;
     }
     public List<?> getList() {
