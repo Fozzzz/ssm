@@ -19,6 +19,7 @@ public class NewsService {
         page.setCurrentPage(page.getCurrentPage());
         List<News> limit = newsDao.getLimit(page);
         page.setList(limit);
+        page.setTotalNumber(newsDao.getAll().size());
         page.init();
         return page;
     }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import ssm.dao.NewsDao;
+import ssm.entity.News;
 import ssm.entity.Page;
 import ssm.service.NewsService;
 
@@ -17,9 +19,31 @@ import ssm.service.NewsService;
 public class NewsWeb {
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private NewsDao newsDao;
+
     @RequestMapping("/getLimit")
-    public String getLimit(Page page,Model model){
-        model.addAttribute("page",newsService.getLimit(page));
+    public String getLimit(Page page, Model model) {
+        model.addAttribute("page", newsService.getLimit(page));
         return "index";
+    }
+
+    @RequestMapping("/deleteById")
+    public String deleteById(Integer n_id, Page page, Model model) {
+
+        newsDao.delete(n_id);
+        return getLimit(page, model);
+    }
+
+    @RequestMapping("/add")
+    public String add(News news, Page page, Model model) {
+        newsDao.add(news);
+        return getLimit(page, model);
+    }
+
+    @RequestMapping("/update")
+    public String update(News news, Page page, Model model) {
+        newsDao.update(news);
+        return getLimit(page, model);
     }
 }
