@@ -1,16 +1,15 @@
 package ssm.web;
 
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import ssm.dao.NewsDao;
 import ssm.entity.News;
 import ssm.entity.Page;
 import ssm.service.NewsService;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/11/4.
@@ -46,10 +45,27 @@ public class NewsWeb {
         newsDao.update(news);
         return getLimit(page, model);
     }
-
+    //通过name
     @RequestMapping("/vague")
-    public String vague(String vague,Page page,Model model){
-        model.addAttribute("page",newsDao.getvague(page,vague));
+    public String vague(String vague,String type, Page page, Model model){
+        page.setCurrentPage(page.getCurrentPage());
+        vague="%"+vague+"%";
+        if (type.equals("标题")){
+            List<News> limit = newsDao.getvague(vague,page.getCurrentNumber(),page.getPageNumber());
+            page.setList(limit);
+            page.setTotalNumber(newsDao.getvaguesum(vague));
+        }else if(type.equals("内容")){
+            List<News> limit = newsDao.getcontent(vague,page.getCurrentNumber(),page.getPageNumber());
+            page.setList(limit);
+            page.setTotalNumber(newsDao.getcontentsum(vague));
+        }else if(type.equals("类型")){
+            List<News> limit = newsDao.gettype(vague,page.getCurrentNumber(),page.getPageNumber());
+            page.setList(limit);
+            page.setTotalNumber(newsDao.gettypesum(vague));
+        }
+        page.init();
+        model.addAttribute("page",page);
         return "index";
     }
+
 }

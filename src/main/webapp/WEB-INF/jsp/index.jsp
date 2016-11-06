@@ -32,32 +32,15 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="关键字">
-                                    <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default dropdown-toggle"
-                                                data-toggle="dropdown">类型
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="#">全部</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="#">编号</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">标题</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">内容</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">类型</a>
-                                            </li>
-                                        </ul>
-                                         <button class="btn btn-default" type="button">查询</button>
-                                    </span>
+                                    <form action="vague" method="post">
+                                        <input type="text" class="form-control" name="vague" placeholder="关键字">
+                                        <select name="type">
+                                            <option value="标题">标题</option>
+                                            <option value="内容">内容</option>
+                                            <option value="类型">类型</option>
+                                        </select>
+                                         <button class="btn btn-default" type="submit">查询</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
